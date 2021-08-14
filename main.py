@@ -39,3 +39,4 @@ if __name__ == '__main__':
                 running = False
 
         pandora.event_processor(events)
+#talita
