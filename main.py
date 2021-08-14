@@ -14,7 +14,7 @@ background = pygame.image.load('media/bg_geral.png')
 
 #  For not to import this module
 if __name__ == '__main__':
-    
+
     #  Inicialize Pandora
     pandora = Pandora()
 
@@ -29,18 +29,13 @@ if __name__ == '__main__':
         screen.blit(background, (0, 0))
         screen.blit(pandora.draw, coordinates)
         pygame.display.update()
-        
+
         #  Check the Events
 
         events = pygame.event.get()
-        
+
         for event in events:
             if event.type == pygame.QUIT:
                 running = False
-        
-        pandora.event_processor(events)
 
-# Ana Carla
-# Davi 
-# Michel Leonidas
-# Carolzinh
+        pandora.event_processor(events)

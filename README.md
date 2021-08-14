@@ -12,7 +12,7 @@ git clone https://github.com/ericxlima/Pandora_vs_UFPE.git
 #  Entry in Directory:
 cd Pandora_vs_UFPE
 
-#  Activate your virtual environment
+        #  Activate your virtual environment
 
 #  Install all requirements
 pip3 install -r requirements.txt

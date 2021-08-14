@@ -36,10 +36,13 @@
 
 #
 ### Pushing
-- To push:
+- For working in this project:
 ```bash
+#  Use this, for get a orientation
+git status
+
 # Go to the development branch
-git checkout develppment
+git checkout dev
 
 # Update to the latest:
 git pull
@@ -47,9 +50,9 @@ git pull
     #  Work on the project...
 
 # Make a Semantic Commit
-git add <files>
+git add <files>  #  use a dot (.) if was more archives
 git commit -m "<type>: <description>"
 
 # Then, send it to the development branch:
-git push origin development 
+git push origin dev
 ``` 
