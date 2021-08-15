@@ -1,4 +1,4 @@
-from classes.pandora import Pandora
+from objects.pandora import Pandora
 import pygame
 
 from scripts.constants import LENGHT_SCREEN_MEDIUM
@@ -23,6 +23,7 @@ if __name__ == '__main__':
     while running:
 
         #  Calculate Rules:
+        pandora.calculate_rules()
         coordinates = pandora.x, pandora.y
 
         #  Print in the Screen
@@ -33,10 +34,14 @@ if __name__ == '__main__':
         #  Check the Events
 
         events = pygame.event.get()
+        
+        
 
         for event in events:
             if event.type == pygame.QUIT:
                 running = False
-
+            
         pandora.event_processor(events)
+
+        
 #talita

@@ -1,6 +1,6 @@
 import pygame
 
-from classes.game_object import GameObject
+from objects.game_object import GameObject
 
 
 class Pandora(GameObject):
@@ -19,13 +19,26 @@ class Pandora(GameObject):
         super().__init__(position_x, position_y, width, height)
 
         #  Moviment Properties
-        self._velocity = 10
+        self._velocity_x = 0
+        self._velocity_y = 0
     
 
-    #  Getters to consult this properties
+    #  Getters and Setters to velocities
     @property
-    def v(self):
-        return self._velocity
+    def vel_x(self):
+        return self._velocity_x
+
+    @property
+    def vel_y(self):
+        return self._velocity_y
+
+    @vel_x.setter
+    def vel_x(self, value):
+        self._velocity_x = value
+    
+    @vel_y.setter
+    def vel_y(self, value):
+        self._velocity_y = value
 
     #  Pandora for Screen
     @property
@@ -36,23 +49,31 @@ class Pandora(GameObject):
 
     #  Moviments Methods
     def calculate_rules(self):
-        pass
+        self.x += self.vel_x
+        self.x += self.vel_y
     
 
     def event_processor(self, events):
         for event in events:
-
             if event.type == pygame.KEYDOWN:
                 
                 if event.key == pygame.K_LEFT:
-                    self.x -= self.v
-                
+                    self.vel_x = -1
                 if event.key == pygame.K_UP:
-                    self.y -= self.v
-
+                    self.vel_y = -1
                 if event.key == pygame.K_RIGHT:
-                    self.x += self.v
-
+                    self.vel_x = 1
                 if event.key == pygame.K_DOWN:
-                    self.y += self.v
+                    self.vel_y = 1
+            
+            if event.type == pygame.KEYUP:
+
+                if event.key == pygame.K_LEFT:
+                    self.vel_x = 0
+                if event.key == pygame.K_UP:
+                    self.vel_y = 0
+                if event.key == pygame.K_RIGHT:
+                    self.vel_x = 0
+                if event.key == pygame.K_DOWN:
+                    self.vel_y = 0
 
