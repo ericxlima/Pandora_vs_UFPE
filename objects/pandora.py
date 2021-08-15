@@ -23,7 +23,7 @@ class Pandora(GameObject):
         self._velocity_y = 0
     
 
-    #  Getters and Setters to velocities
+    #  Getters and Setters to moviment velocities in axis x and y
     @property
     def vel_x(self):
         return self._velocity_x
@@ -40,7 +40,8 @@ class Pandora(GameObject):
     def vel_y(self, value):
         self._velocity_y = value
 
-    #  Pandora for Screen
+
+    #  Getter for Print Pandora in Screen
     @property
     def draw(self):
         """ To Use with screen.blit()"""
@@ -50,13 +51,13 @@ class Pandora(GameObject):
     #  Moviments Methods
     def calculate_rules(self):
         self.x += self.vel_x
-        self.x += self.vel_y
+        self.y += self.vel_y
     
 
     def event_processor(self, events):
         for event in events:
+            #  While the user presses the key
             if event.type == pygame.KEYDOWN:
-                
                 if event.key == pygame.K_LEFT:
                     self.vel_x = -1
                 if event.key == pygame.K_UP:
@@ -66,8 +67,8 @@ class Pandora(GameObject):
                 if event.key == pygame.K_DOWN:
                     self.vel_y = 1
             
+            # If the user drop a key
             if event.type == pygame.KEYUP:
-
                 if event.key == pygame.K_LEFT:
                     self.vel_x = 0
                 if event.key == pygame.K_UP:

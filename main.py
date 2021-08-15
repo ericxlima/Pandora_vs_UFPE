@@ -22,7 +22,7 @@ if __name__ == '__main__':
     running = True
     while running:
 
-        #  Calculate Rules:
+        #  Calculate Rules for print Pandora in other coordinates:
         pandora.calculate_rules()
         coordinates = pandora.x, pandora.y
 
@@ -32,10 +32,7 @@ if __name__ == '__main__':
         pygame.display.update()
 
         #  Check the Events
-
         events = pygame.event.get()
-        
-        
 
         for event in events:
             if event.type == pygame.QUIT:
