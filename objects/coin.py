@@ -41,10 +41,10 @@ class Coin(GameObject):
         self._velocity_y = value
 
 
-    #  Getter for Print a Coin in Screen
-    @property
-    def draw(self):
-        """ To Use with screen.blit()"""
-        return pygame.image.load('media/coin.png')
+    def draw(self, screen):
+        """ Print in Screen the Coin Object"""
+        image =  pygame.image.load('media/coin.png')
+        coordinates = self.x, self.y
+        screen.blit(image, coordinates)
 
 

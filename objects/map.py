@@ -31,11 +31,11 @@ class Map(GameObject):
     def vel_x(self, value):
         self._velocity_x = value
 
-    #  Getter for Print Map in Screen
-    @property
-    def draw(self):
-        """ To Use with screen.blit()"""
-        return pygame.image.load('media/big_bg.png')
+    def draw(self, screen):
+        """ Print in Screen the Coin Object"""
+        image =  pygame.image.load('media/big_bg.png')
+        coordinates = self.x, self.y
+        screen.blit(image, coordinates)
 
 
     #  Moviments Methods

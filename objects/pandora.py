@@ -42,11 +42,11 @@ class Pandora(GameObject):
         self._velocity_y = value
 
 
-    #  Getter for Print Pandora in Screen
-    @property
-    def draw(self):
-        """ To Use with screen.blit()"""
-        return pygame.image.load('media/pandora.png')
+    def draw(self, screen):
+        """ Print in Screen the Pandora"""
+        image =  pygame.image.load('media/pandora.png')
+        coordinates = self.x, self.y
+        screen.blit(image, coordinates)
 
 
     #  Moviments Methods

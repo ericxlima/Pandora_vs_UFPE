@@ -36,20 +36,16 @@ if __name__ == '__main__':
         #-------------------#
         #  Calculate Rules  #
         #-------------------#
-        
         pandora.calculate_rules()
         background.calculate_rules()
-
-        coordinates_pandora = pandora.x, pandora.y
-        coordinates_coin = coin.x, coin.y
 
 
         #-----------------------#
         #  Print in the Screen  #
         #-----------------------#
-        screen.blit(background.draw, (0, 0))
-        screen.blit(coin.draw, coordinates_coin)
-        screen.blit(pandora.draw, coordinates_pandora)
+        background.draw(screen)
+        pandora.draw(screen)
+        coin.draw(screen)
         pygame.display.update()
         
 
