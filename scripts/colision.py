@@ -1,7 +1,3 @@
-import pygame
-
-from objects.game_object import GameObject
-
 class Colision:
     def __init__(self,_gameobject1,_gameobject2,vector):
         self._go1 = _gameobject1

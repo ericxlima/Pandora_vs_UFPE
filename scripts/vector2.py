@@ -1,11 +1,11 @@
 class Vector2:
     def __init__(self,pos_x,pos_y):
         """
-         (1,0) cima
-         (-1,0) baixo
-         (0,1) direita
-         (0,-1) esquerda 
-         eu acho
+          x   y     Moviment:
+         (1 , 0) -> Right
+         (-1, 0) -> Left
+         (0 , 1) -> Down
+         (0 ,-1) -> Up 
         """
         self._x = pos_x
         self._y = pos_y

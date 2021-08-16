@@ -5,14 +5,14 @@ from objects.game_object import GameObject
 
 class Coin(GameObject):
  
-    def __init__(self, position_x=350, position_y=510, width=40, height=60) -> None:
-        """Returns Pandora Object
+    def __init__(self, position_x=600, position_y=510, width=40, height=40) -> None:
+        """Returns a Coin Object
 
         Args:
             pos_x (int): Horizontal Position 
             pos_y (int): Vertical Position
-            width (int): Width at Pandora, relative to screen
-            height (int): Heignt at Pandora, relative to screen
+            width (int): Width at Coin, relative to screen
+            height (int): Heignt at Coin, relative to screen
         """
 
         #  Basic Properties
@@ -41,10 +41,10 @@ class Coin(GameObject):
         self._velocity_y = value
 
 
-    #  Getter for Print Pandora in Screen
+    #  Getter for Print a Coin in Screen
     @property
     def draw(self):
         """ To Use with screen.blit()"""
-        return pygame.image.load('media/pandora.png')
+        return pygame.image.load('media/coin.png')
 
 
