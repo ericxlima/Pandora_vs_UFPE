@@ -24,6 +24,14 @@ class GameObject:
     @property
     def y(self):
         return self._position_y
+    
+    @property
+    def w(self):
+        return self._width
+
+    @property
+    def h(self):
+        return self._height
 
     
     #  Setters to modify this properties 

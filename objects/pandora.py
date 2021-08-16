@@ -5,7 +5,7 @@ from objects.game_object import GameObject
 
 class Pandora(GameObject):
  
-    def __init__(self, position_x=385, position_y=510, width=40, height=60) -> None:
+    def __init__(self, position_x=350, position_y=510, width=40, height=60) -> None:
         """Returns Pandora Object
 
         Args:
