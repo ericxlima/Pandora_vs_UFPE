@@ -5,7 +5,7 @@ from objects.game_object import GameObject
 
 class Pandora(GameObject):
  
-    def __init__(self, position_x=350, position_y=510, width=40, height=60) -> None:
+    def __init__(self, position_x=350, position_y=525, width=40, height=60) -> None:
         """Returns Pandora Object
 
         Args:
@@ -21,6 +21,7 @@ class Pandora(GameObject):
         #  Moviment Properties
         self._velocity_x = 0
         self._velocity_y = 0
+        self._jump = False
     
 
     #  Getters and Setters to moviment velocities in axis x and y
@@ -60,7 +61,7 @@ class Pandora(GameObject):
             self.x += self.vel_x
         
         #  Floor limit of Map
-        if self.y >= 511:
+        if self.y >= 525:
             self.y -= 1
         else:
             self.y += self.vel_y

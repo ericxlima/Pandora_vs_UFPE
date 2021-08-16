@@ -5,7 +5,7 @@ from objects.game_object import GameObject
 
 class Coin(GameObject):
  
-    def __init__(self, position_x=600, position_y=510, width=40, height=40) -> None:
+    def __init__(self, position_x= 600, position_y=520, width=40, height=40) -> None:
         """Returns a Coin Object
 
         Args:
