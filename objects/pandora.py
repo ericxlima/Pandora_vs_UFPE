@@ -5,7 +5,7 @@ from objects.game_object import GameObject
 
 class Pandora(GameObject):
  
-    def __init__(self, position_x=400, position_y=320, width=40, height=60) -> None:
+    def __init__(self, position_x=385, position_y=510, width=40, height=60) -> None:
         """Returns Pandora Object
 
         Args:
@@ -50,22 +50,36 @@ class Pandora(GameObject):
 
     #  Moviments Methods
     def calculate_rules(self):
-        self.x += self.vel_x
-        self.y += self.vel_y
+        #  Left limit of Map
+        if self.x <= 0:
+            self.x += 1
+        #  Right limit of Map
+        elif self.x >= 1245:
+            self.x -= 1
+        else:
+            self.x += self.vel_x
+        
+        #  Floor limit of Map
+        if self.y >= 511:
+            self.y -= 1
+        else:
+            self.y += self.vel_y
     
 
     def event_processor(self, events):
-        for event in events:
+        for event in events:            
             #  While the user presses the key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
-                    self.vel_x = -1
+                    self.vel_x = -5
                 if event.key == pygame.K_UP:
-                    self.vel_y = -1
+                    self.vel_y = -5
                 if event.key == pygame.K_RIGHT:
-                    self.vel_x = 1
+                    self.vel_x = 5
                 if event.key == pygame.K_DOWN:
-                    self.vel_y = 1
+                    #  For not to enter the floor
+                    if self.y < 510:
+                        self.vel_y = 5
             
             # If the user drop a key
             if event.type == pygame.KEYUP:
