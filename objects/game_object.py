@@ -1,6 +1,6 @@
 class GameObject:
     
-    def __init__(self, position_x=None, position_y=None, width=None, height=None) -> None:
+    def __init__(self, position_x=None, position_y=None, width=None, height=None, name="none") -> None:
         """Returns Object for Pandora's Game
 
         Args:
@@ -15,7 +15,7 @@ class GameObject:
         self._position_y = position_y
         self._width = width
         self._height = height
-    
+        self._name = name
     #  Getters to consult this properties
     @property
     def x(self):
@@ -32,6 +32,10 @@ class GameObject:
     @property
     def h(self):
         return self._height
+    
+    @property
+    def name(self):
+        return self._name
 
     
     #  Setters to modify this properties 

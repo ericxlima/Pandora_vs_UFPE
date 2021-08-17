@@ -41,6 +41,7 @@ class Map(GameObject):
     #  Moviments Methods
     def calculate_rules(self):
         self.x += self.vel_x
+        self.vel_x = 0
     
 
     def event_processor(self, events):
