@@ -47,11 +47,12 @@ if __name__ == '__main__':
     #  Game-Loop
     running = True
     while running:
-        #-------------------#
-        #frame rate control #
-        #-------------------#
+        #--------------------#
+        # frame rate control #
+        #--------------------#
         x = pygame.time.get_ticks()
         pygame.time.delay(1)
+
         #-------------------#
         #  Calculate Rules  #
         #-------------------#
@@ -85,9 +86,10 @@ if __name__ == '__main__':
         if pandora.x < 20 and scroll>left_border:
             scroll += -speed
             move_obj(moveble_objs,speed,0)
-        elif pandora.x > 1200 and scroll<right_border:
+        elif pandora.x > 1280//2 and scroll<right_border:
             scroll += speed
             move_obj(moveble_objs,-speed,0)
+
         #-------------------#
         #     Colisions     #
         #-------------------#

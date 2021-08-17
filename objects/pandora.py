@@ -92,4 +92,3 @@ class Pandora(GameObject):
                     self.vel_x = 0
                 if event.key == pygame.K_DOWN:
                     self.vel_y = 0
-
