@@ -50,6 +50,7 @@ if __name__ == '__main__':
         #-------------------#
         #frame rate control #
         #-------------------#
+        x = pygame.time.get_ticks()
         pygame.time.delay(1)
         #-------------------#
         #  Calculate Rules  #
@@ -81,7 +82,6 @@ if __name__ == '__main__':
         #-------------------#
         #     Border        #
         #-------------------#
-        print(scroll)
         if pandora.x < 20 and scroll>left_border:
             scroll += -speed
             move_obj(moveble_objs,speed,0)
@@ -93,6 +93,8 @@ if __name__ == '__main__':
         #-------------------#
         coliders_events = colider.check_colision()  
         #if len(coliders_events)>0:
+
+        print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
 
                     
 
