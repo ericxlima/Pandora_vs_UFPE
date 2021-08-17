@@ -44,8 +44,8 @@ if __name__ == '__main__':
         #  Print in the Screen  #
         #-----------------------#
         background.draw(screen)
-        pandora.draw(screen)
         coin.draw(screen)
+        pandora.draw(screen)
         pygame.display.update()
         
 
