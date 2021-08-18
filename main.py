@@ -86,7 +86,7 @@ if __name__ == '__main__':
         if pandora.x < 20 and scroll>left_border:
             scroll += -speed
             move_obj(moveble_objs,speed,0)
-        elif pandora.x > 1280//2 and scroll<right_border:
+        elif pandora.x > (1280//2) - 20 and scroll<right_border:
             scroll += speed
             move_obj(moveble_objs,-speed,0)
 
