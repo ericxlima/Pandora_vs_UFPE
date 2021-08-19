@@ -1,3 +1,4 @@
+#from _typeshed import Self
 import pygame
 
 from objects.game_object import GameObject
@@ -21,9 +22,8 @@ class Pandora(GameObject):
         #  Moviment Properties
         self._velocity_x = 0
         self._velocity_y = 0
-        self._jump = False
-    
-
+        self._jump = 0
+        self._jump_pattern = []
     #  Getters and Setters to moviment velocities in axis x and y
     @property
     def vel_x(self):
@@ -68,13 +68,16 @@ class Pandora(GameObject):
     
 
     def event_processor(self, events):
+        if self._jump > 0:
+            self.jump(-20)# jump height negative because gamepy
         for event in events:            
             #  While the user presses the key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
                     self.vel_x = -5
                 if event.key == pygame.K_UP:
-                    self.vel_y = -5
+                    self.jumppattern(20) #jump frame precision
+                    self._jump = 20 # jump height
                 if event.key == pygame.K_RIGHT:
                     self.vel_x = 5
                 if event.key == pygame.K_DOWN:
@@ -86,9 +89,40 @@ class Pandora(GameObject):
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     self.vel_x = 0
-                if event.key == pygame.K_UP:
-                    self.vel_y = 0
+                #if event.key == pygame.K_UP:
+                   # self.vel_y = 0
                 if event.key == pygame.K_RIGHT:
                     self.vel_x = 0
                 if event.key == pygame.K_DOWN:
                     self.vel_y = 0
+
+    def jumppattern(self,c):
+        a = -1
+        b = 0
+        c = 20
+        x1 = (-b + (- 4*a*c)**(1/2)) / (2*a)
+        x2 = (-b - (- 4*a*c)**(1/2)) / (2*a)
+        x = ( x2 - x1 )
+        list = []
+        for i in range(21):
+            list.append(x*i/20 + x1)
+        self._jump_pattern = list
+
+    def jump(self,height):
+        # y = -x^2 + hight          
+        if self._jump < 21 and self._jump > 10:
+            self._jump -= 1
+            x = self._jump_pattern[self._jump]
+            y = -1*(x*x) + height
+            self.y += y
+        elif self._jump < 11 and self._jump > 0:
+            self._jump -= 1
+            x = self._jump_pattern[self._jump]
+            y = -1*(x*x) + height
+            if (self.y - y) < 530:
+                self.y -= y
+            else:
+                self.y = 530
+                self._jump = 0 #jump ended
+        
+

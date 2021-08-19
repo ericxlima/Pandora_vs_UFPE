@@ -95,8 +95,7 @@ if __name__ == '__main__':
         #-------------------#
         coliders_events = colider.check_colision()  
         #if len(coliders_events)>0:
-
-        print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
+        #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
 
                     
 
