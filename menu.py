@@ -30,6 +30,11 @@ while running_menu:
     create_button(screen=screen, position=(720, 400), image_path='start_button')
     create_button(screen=screen, position=(720, 500), image_path='exit_button')
 
+    if selected_button == 'Start':
+        create_button(screen=screen, position=(720, 400), size=(60, 40), color=GREEN)
+    elif selected_button == 'Exit':
+        create_button(screen=screen, position=(720, 500), size=(60, 40), color=RED)
+
     pygame.display.update()
     
     #--------------------#
@@ -46,27 +51,13 @@ while running_menu:
             #  Modify user choice
             if event.key == pygame.K_UP:
                 selected_button = "Start"
-                create_button(screen=screen, position=(720, 400), size=(60, 40), color=GREEN)
             elif event.key == pygame.K_DOWN:
                 selected_button = "Exit"
-                create_button(screen=screen, position=(720, 500), size=(60, 40), color=RED)
             
             #  Make Action with key ENTER
             if event.key == pygame.K_RETURN:
                 selected_button = "Enter"
-        
-        if event.type == pygame.KEYUP:
-            #  Modify user choice
-            if event.key == pygame.K_UP:
-                selected_button = "Start"
-                create_button(screen=screen, position=(720, 400), size=(60, 40), color=GREEN)
-            elif event.key == pygame.K_DOWN:
-                selected_button = "Exit"
-                create_button(screen=screen, position=(720, 500), size=(60, 40), color=RED)
-            
-            #  Make Action with key ENTER
-            if event.key == pygame.K_RETURN:
-                selected_button = "Enter"
+
 
     
     print(selected_button)

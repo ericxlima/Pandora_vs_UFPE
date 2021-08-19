@@ -1,6 +1,4 @@
 import pygame
-from pygame import color
-from pygame import surface
 from pygame.constants import WINDOWHITTEST
 
 
