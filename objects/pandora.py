@@ -76,14 +76,11 @@ class Pandora(GameObject):
                 if event.key == pygame.K_LEFT:
                     self.vel_x = -5
                 if event.key == pygame.K_UP:
-                    self.jumppattern(20) #jump frame precision
-                    self._jump = 20 # jump height
+                    if self._jump == 0:
+                        self.jumppattern(20) #jump frame precision
+                        self._jump = 20 # jump height
                 if event.key == pygame.K_RIGHT:
                     self.vel_x = 5
-                if event.key == pygame.K_DOWN:
-                    #  For not to enter the floor
-                    if self.y < 510:
-                        self.vel_y = 5
             
             # If the user drop a key
             if event.type == pygame.KEYUP:
@@ -93,8 +90,6 @@ class Pandora(GameObject):
                    # self.vel_y = 0
                 if event.key == pygame.K_RIGHT:
                     self.vel_x = 0
-                if event.key == pygame.K_DOWN:
-                    self.vel_y = 0
 
     def jumppattern(self,c):
         a = -1

@@ -50,7 +50,7 @@ if __name__ == '__main__':
         #--------------------#
         # frame rate control #
         #--------------------#
-        x = pygame.time.get_ticks()
+        time = pygame.time.get_ticks()
         pygame.time.delay(1)
 
         #-------------------#
@@ -94,6 +94,12 @@ if __name__ == '__main__':
         #     Colisions     #
         #-------------------#
         coliders_events = colider.check_colision()  
+        clock = pygame.time.get_ticks() -time
+        wait = 10-clock
+        if wait>0:
+            pygame.time.delay(wait)# frame rate control
+
+        print(wait)
         #if len(coliders_events)>0:
         #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
 
