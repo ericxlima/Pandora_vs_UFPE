@@ -1,64 +1,76 @@
+from pygame.event import pump
+from objects.map import Map
 import pygame
 
-from scripts.constants import LENGHT_SCREEN_HD
-from scripts.constants import BLACK
+from scripts.constants import GREEN, RED, LENGHT_SCREEN_HD
+
+from scripts.text import create_button, text_format
+
 
 # Game inicialization
 pygame.init()
 
-# Text renderer
-def text_format(message=None, size=None, color=None):
-    """Treat text and it return
-    Args:
-        message (str, optional): Mensage to show in screen. Defaults to None.
-        size (int, optional): Size of Text. Defaults to None.
-        color (tuple, optional): Color of text. Defaults to None.
-    Returns:
-        Font: Font to rendering
-    """
-    font = "Poppins-Medium.ttf"
 
-    new_font = pygame.font.Font(font, size=size)
-    new_text = new_font.render(text=message, 
-                             antialias=False,
-                             color=color)
-
-    return new_text
-
-    
 screen = pygame.display.set_mode(size=LENGHT_SCREEN_HD)
-menu = True
-selected_button = "Start"
 
-while menu:
+#  Buttons
+selected_button = None
+
+background_menu = Map()
+
+running_menu = True
+while running_menu:
 
     #-----------------------#
     #  Print in the Screen  #
     #-----------------------#
 
-    image =  pygame.image.load('media/big_bg.png')
-    coordinates = (0, 0)
-    screen.blit(image, coordinates)
-    screen.update()
+    background_menu.draw(screen)
+
+    create_button(screen=screen, position=(720, 400), image_path='start_button')
+    create_button(screen=screen, position=(720, 500), image_path='exit_button')
+
+    pygame.display.update()
     
     #--------------------#
     #  Check all Events  #
     #--------------------#
-    for event in pygame.event.get():
+    events = pygame.event.get()
+    for event in events:
 
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
         
         if event.type == pygame.KEYDOWN:
+            #  Modify user choice
             if event.key == pygame.K_UP:
                 selected_button = "Start"
+                create_button(screen=screen, position=(720, 400), size=(60, 40), color=GREEN)
             elif event.key == pygame.K_DOWN:
                 selected_button = "Exit"
+                create_button(screen=screen, position=(720, 500), size=(60, 40), color=RED)
+            
+            #  Make Action with key ENTER
             if event.key == pygame.K_RETURN:
-                if selected_button == "Exit":
-                    pygame.quit()
-                    quit()
-                if selected_button == "Start":
-                    print("Start")
+                selected_button = "Enter"
+        
+        if event.type == pygame.KEYUP:
+            #  Modify user choice
+            if event.key == pygame.K_UP:
+                selected_button = "Start"
+                create_button(screen=screen, position=(720, 400), size=(60, 40), color=GREEN)
+            elif event.key == pygame.K_DOWN:
+                selected_button = "Exit"
+                create_button(screen=screen, position=(720, 500), size=(60, 40), color=RED)
+            
+            #  Make Action with key ENTER
+            if event.key == pygame.K_RETURN:
+                selected_button = "Enter"
+
+    
+    print(selected_button)
+            
+            
+            
                 
