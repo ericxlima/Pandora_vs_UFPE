@@ -3,7 +3,7 @@ from objects.menu_background import Map
 import pygame
 import main
 
-from scripts.constants import GREEN, RED, LENGHT_SCREEN_HD
+from scripts.constants import GREEN, RED, LENGHT_SCREEN_HD, WHITE
 
 from scripts.text import create_button, text_format
 
@@ -32,9 +32,9 @@ while running_menu:
     create_button(screen=screen, position=(685, 400), image_path='exit_button')
 
     if selected_button == 'Start':
-        create_button(screen=screen, position=(366, 400), size=(220, 90), color=GREEN)
+        create_button(screen=screen, position=(375, 400), size=(205, 75), color=WHITE)
     elif selected_button == 'Exit':
-        create_button(screen=screen, position=(685, 400), size=(220, 90), color=RED)
+        create_button(screen=screen, position=(695, 400), size=(205, 75), color=WHITE)
 
     pygame.display.update()
     
