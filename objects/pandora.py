@@ -44,7 +44,7 @@ class Pandora(GameObject):
 
     def draw(self, screen):
         """ Print in Screen the Pandora"""
-        image =  pygame.image.load('media/pandora.png')
+        image =  pygame.image.load('media/pandora-right1.png')
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
 
@@ -68,6 +68,8 @@ class Pandora(GameObject):
     
 
     def event_processor(self, events):
+
+
         if self._jump > 0:
             self.jump(-20)# jump height negative because gamepy
         for event in events:            
@@ -78,9 +80,10 @@ class Pandora(GameObject):
                 if event.key == pygame.K_UP:
                     if self._jump == 0:
                         self.jumppattern(20) #jump frame precision
-                        self._jump = 20 # jump height
+                        self._jump = 14 # jump height
                 if event.key == pygame.K_RIGHT:
                     self.vel_x = 5
+                    
             
             # If the user drop a key
             if event.type == pygame.KEYUP:

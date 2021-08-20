@@ -1,6 +1,7 @@
 from pygame.event import pump
-from objects.map import Map
+from objects.menu_background import Map
 import pygame
+import main
 
 from scripts.constants import GREEN, RED, LENGHT_SCREEN_HD
 
@@ -27,13 +28,13 @@ while running_menu:
 
     background_menu.draw(screen)
 
-    create_button(screen=screen, position=(720, 400), image_path='start_button')
-    create_button(screen=screen, position=(720, 500), image_path='exit_button')
+    create_button(screen=screen, position=(366, 400), image_path='start_button')
+    create_button(screen=screen, position=(685, 400), image_path='exit_button')
 
     if selected_button == 'Start':
-        create_button(screen=screen, position=(720, 400), size=(60, 40), color=GREEN)
+        create_button(screen=screen, position=(366, 400), size=(220, 90), color=GREEN)
     elif selected_button == 'Exit':
-        create_button(screen=screen, position=(720, 500), size=(60, 40), color=RED)
+        create_button(screen=screen, position=(685, 400), size=(220, 90), color=RED)
 
     pygame.display.update()
     
@@ -49,9 +50,10 @@ while running_menu:
         
         if event.type == pygame.KEYDOWN:
             #  Modify user choice
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_LEFT:
                 selected_button = "Start"
-            elif event.key == pygame.K_DOWN:
+                
+            elif event.key == pygame.K_RIGHT:
                 selected_button = "Exit"
             
             #  Make Action with key ENTER
