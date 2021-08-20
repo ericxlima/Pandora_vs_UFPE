@@ -19,22 +19,13 @@ class Coin(GameObject):
         super().__init__(position_x, position_y, width, height)
 
         #  Moviment Properties
-        self._velocity_x = 0
-        self._velocity_y = 0
+        self._velocity_y = 5
     
 
     #  Getters and Setters to moviment velocities in axis x and y
     @property
-    def vel_x(self):
-        return self._velocity_x
-
-    @property
     def vel_y(self):
         return self._velocity_y
-
-    @vel_x.setter
-    def vel_x(self, value):
-        self._velocity_x = value
     
     @vel_y.setter
     def vel_y(self, value):
@@ -43,8 +34,15 @@ class Coin(GameObject):
 
     def draw(self, screen):
         """ Print in Screen the Coin Object"""
-        image =  pygame.image.load('media/coin.png')
+        image =  pygame.image.load('media/level_1/coin.png')
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
+    
+    def calculate_rules(self):
+        self.y += self.vel_y
+
+        if self.y == 530:
+            self.vel_y = 0
+        
 
 
