@@ -15,6 +15,8 @@ from scripts.colision_mod import Colision_mod
 #  Inicialize the Package, and a Screen Title
 pygame.init()
 pygame.display.set_caption('Pandora vs UFPE')
+icon = pygame.image.load('objects/venus space.png')
+pygame.display.set_icon(icon)
 
 #  Set the Screen Size 
 screen = pygame.display.set_mode(size=LENGHT_SCREEN_HD)
