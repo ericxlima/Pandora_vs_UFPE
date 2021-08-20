@@ -1,5 +1,4 @@
 #  Import Dependences
-from objects.game_object import GameObject
 import pygame
 
 #  Import Objects
@@ -35,22 +34,34 @@ if __name__ == '__main__':
     #  Inicialize All Objects
     pandora = Pandora()
     background = Map()
-    coin = Coin()
     mage = Mage()
+
     #======================== border controls=============
     scroll = 0 #border left wall: 0 for left border and  1200 for right border
     right_border = 1200
     left_border = 0
     speed = 5
-    moveble_objs = [coin,pandora,background] #objs to be moved
+    moveble_objs = [pandora,background] #objs to be moved
+    
     #=====================================================
     # Objects to the colider detector
-    list_objs = [pandora,coin]  
+    list_objs = [pandora]  
     colider = Colision_mod(list_objs) 
+
+    coins = []
 
     #  Game-Loop
     running = True
     while running:
+        #--------------------#
+        #      Drop Coin     #
+        #--------------------#
+
+        if mage.drop_coin:
+            coin = Coin(position_x=mage.x,
+                        position_y=mage.y)
+            coins.append(coin)
+
         #--------------------#
         # frame rate control #
         #--------------------#
@@ -64,15 +75,22 @@ if __name__ == '__main__':
         background.calculate_rules()
         mage.calculate_rules()
 
+        for coin in coins:
+            coin.calculate_rules()
+
 
         #-----------------------#
         #  Print in the Screen  #
         #-----------------------#
         background.draw(screen)
-        coin.draw(screen)
         pandora.draw(screen)
         mage.draw(screen)
+
+        for coin in coins:
+            coin.draw(screen)
+        
         pygame.display.update()
+
         
 
         #--------------------#
