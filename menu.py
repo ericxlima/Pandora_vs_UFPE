@@ -32,7 +32,7 @@ while running_menu:
     create_button(screen=screen, position=(685, 400), image_path='exit_button')
 
     if selected_button == 'Start':
-        create_button(screen=screen, position=(375, 400), size=(205, 75), color=WHITE)
+        create_button(screen=screen, position=(376, 400), size=(205, 75), color=WHITE)
     elif selected_button == 'Exit':
         create_button(screen=screen, position=(695, 400), size=(205, 75), color=WHITE)
 
