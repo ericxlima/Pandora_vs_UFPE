@@ -44,7 +44,7 @@ class Pandora(GameObject):
 
     def draw(self, screen):
         """ Print in Screen the Pandora"""
-        image =  pygame.image.load('media/pandora-right1.png')
+        image =  pygame.image.load('media/pandora/pandora-right1.png')
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
 

@@ -43,7 +43,7 @@ class Coin(GameObject):
 
     def draw(self, screen):
         """ Print in Screen the Coin Object"""
-        image =  pygame.image.load('media/coin.png')
+        image =  pygame.image.load('media/level_1/coin.png')
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
 

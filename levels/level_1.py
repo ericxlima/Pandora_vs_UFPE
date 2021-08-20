@@ -1,5 +1,4 @@
 #  Import Dependences
-from objects.game_object import GameObject
 import pygame
 
 #  Import Objects
@@ -29,20 +28,22 @@ def move_obj(objs,location_x,location_y):
         i.x += location_x
         i.y += location_y
 
-#  For nobody to import this module
-if __name__ == '__main__':
+#  For to import this module
+if __name__ != '__main__':
 
     #  Inicialize All Objects
     pandora = Pandora()
     background = Map()
     coin = Coin()
     mage = Mage()
+
     #======================== border controls=============
     scroll = 0 #border left wall: 0 for left border and  1200 for right border
     right_border = 1200
     left_border = 0
     speed = 5
-    moveble_objs = [coin,pandora,background] #objs to be moved
+    moveble_objs = [coin,pandora,background, mage] #objs to be moved
+
     #=====================================================
     # Objects to the colider detector
     list_objs = [pandora,coin]  
@@ -62,7 +63,6 @@ if __name__ == '__main__':
         #-------------------#
         pandora.calculate_rules()
         background.calculate_rules()
-        mage.calculate_rules()
 
 
         #-----------------------#
@@ -71,7 +71,6 @@ if __name__ == '__main__':
         background.draw(screen)
         coin.draw(screen)
         pandora.draw(screen)
-        mage.draw(screen)
         pygame.display.update()
         
 
