@@ -5,7 +5,7 @@ from objects.game_object import GameObject
 
 class Map(GameObject):
 
-    def __init__(self, position_x=0, position_y=0, width=6400, height=720) -> None:
+    def __init__(self, position_x=0, position_y=0, width=6400, height=720, name='big_bg') -> None:
         """Create a map object 5 times larger than the screen in width,
            with functionality for Parallax effect
         Args:
@@ -16,7 +16,11 @@ class Map(GameObject):
         """
 
         #  Load basic Superclass properties 
-        super().__init__(position_x=position_x, position_y=position_y, width=width, height=height)
+        super().__init__(position_x=position_x,
+                         position_y=position_y, 
+                         width=width, 
+                         height=height, 
+                         name=name)
         
         #  Moviment Properties
         self._velocity_x = 0
@@ -33,7 +37,7 @@ class Map(GameObject):
 
     def draw(self, screen):
         """ Print in Screen the Coin Object"""
-        image =  pygame.image.load('media/big_bg.png')
+        image =  pygame.image.load(f'media/{self.name}.png')
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
 

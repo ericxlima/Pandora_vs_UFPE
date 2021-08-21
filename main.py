@@ -1,4 +1,5 @@
 #  Import Dependences
+from objects.menu import Menu
 import pygame
 
 #  Import Objects
@@ -6,9 +7,10 @@ from objects.pandora import Pandora
 from objects.map import Map
 from objects.coin import Coin
 from objects.mage import Mage
+from objects.button import Button
 
 #  Import Utilities
-from scripts.constants import LENGHT_SCREEN_HD
+from scripts.constants import LENGHT_SCREEN_HD, RED, WHITE
 from scripts.colision_mod import Colision_mod
 
 
@@ -35,6 +37,7 @@ if __name__ == '__main__':
     pandora = Pandora()
     background = Map()
     mage = Mage()
+    menu = Menu()
 
     #======================== border controls=============
     scroll = 0 #border left wall: 0 for left border and  1200 for right border
@@ -85,6 +88,7 @@ if __name__ == '__main__':
         background.draw(screen)
         pandora.draw(screen)
         mage.draw(screen)
+        menu.draw(screen)
 
         for coin in coins:
             coin.draw(screen)
