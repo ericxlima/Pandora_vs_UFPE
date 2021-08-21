@@ -135,20 +135,21 @@ if __name__ == '__main__':
             #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
         elif menu.choice == 'Exit':
             break
-        
-        #------------------------#
-        #  Print Menu on Screen  #
-        #------------------------#
-        menu.draw(screen=screen)
+        else:
+            #------------------------#
+            #  Print Menu on Screen  #
+            #------------------------#
+            menu.draw(screen=screen)
+            pygame.display.update()
 
 
-        #---------------------#
-        #  Check Menu Events  #
-        #---------------------#
-        events = pygame.event.get()
+            #---------------------#
+            #  Check Menu Events  #
+            #---------------------#
+            events = pygame.event.get()
 
-        for event in events:
-            if event.type == pygame.QUIT:
-                running = False
-            else:
-                menu.event_processor(event=event)
+            for event in events:
+                if event.type == pygame.QUIT:
+                    running = False
+                else:
+                    menu.event_processor(event=event)
