@@ -1,5 +1,4 @@
 import pygame
-from pygame.constants import WINDOWHITTEST
 
 
 def text_format(message=None, size=None, color=None):
@@ -19,24 +18,3 @@ def text_format(message=None, size=None, color=None):
                              color=color)
 
     return new_text
-
-
-
-def create_button(screen=None, size=None, position=None, image_path=None, color=None):
-    """[summary]
-
-    Args:
-        screen ([type], optional): [description]. Defaults to None.
-        size ([type], optional): Retangle size (x, y). Defaults to None.
-        position ([tuple], optional): [description]. Defaults to None.
-        imagem ([type], optional): [description]. Defaults to None.
-    """
-    if image_path:
-        image = pygame.image.load(f'media/{image_path}.png')
-        screen.blit(image, position)
-    if size:
-        square = pygame.Surface(size)
-        square.set_alpha(150)
-        square.fill(color)
-        
-        screen.blit(square, position)

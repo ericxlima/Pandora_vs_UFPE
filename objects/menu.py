@@ -30,9 +30,18 @@ class Menu:
 
     #  Print in Screen
     def draw(self, screen):
+        # Load background
         background = Map(name='menu/background-menu')
         background.draw(screen)
 
+        # Load Images
+        start_image = Button(position_x=376, position_y=400, image_path='menu/start_button')
+        start_image.draw_image(screen=screen)
+        exit_image = Button(position_x=695, position_y=400, image_path='menu/exit_button')
+        exit_image.draw_image(screen=screen)
+
+        
+        # Load Button Menu
         button = Button()
 
         #  For all buttons selecteds

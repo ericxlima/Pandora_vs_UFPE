@@ -3,8 +3,6 @@ Document for geral contants
 """
 
 #  Lengh for screens in scale 16x9
-LENGHT_SCREEN_LOW = (640, 360)
-LENGHT_SCREEN_MEDIUM = (854, 480)
 LENGHT_SCREEN_HD = (1280, 720)
 
 #  Some Colors
