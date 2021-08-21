@@ -56,90 +56,99 @@ if __name__ == '__main__':
     running = True
     while running:
         #--------------------#
-        #  For exit Menu     #
+        #Calculate Menu Rules#
         #--------------------#
         if menu.choice == 'Start':
-            print('Startou mermo')
-        if menu.choice == 'Exit':
-            print('Sai')
+            #  Running Game
+             #--------------------#
+             #      Drop Coin     #
+             #--------------------#
 
-        #--------------------#
-        #      Drop Coin     #
-        #--------------------#
+            if mage.drop_coin:
+                coin = Coin(position_x=mage.x,
+                            position_y=mage.y)
+                coins.append(coin)
 
-        if mage.drop_coin:
-            coin = Coin(position_x=mage.x,
-                        position_y=mage.y)
-            coins.append(coin)
+            #--------------------#
+            # frame rate control #
+            #--------------------#
+            time = pygame.time.get_ticks()
+            pygame.time.delay(1)
 
-        #--------------------#
-        # frame rate control #
-        #--------------------#
-        time = pygame.time.get_ticks()
-        pygame.time.delay(1)
+            #-------------------#
+            #  Calculate Rules  #
+            #-------------------#
+            pandora.calculate_rules()
+            background.calculate_rules()
+            mage.calculate_rules()
 
-        #-------------------#
-        #  Calculate Rules  #
-        #-------------------#
-        pandora.calculate_rules()
-        background.calculate_rules()
-        mage.calculate_rules()
-
-        for coin in coins:
-            coin.calculate_rules()
+            for coin in coins:
+                coin.calculate_rules()
 
 
-        #-----------------------#
-        #  Print in the Screen  #
-        #-----------------------#
-        #background.draw(screen)
-        #pandora.draw(screen)
-        #mage.draw(screen)
-        menu.draw(screen)
+            #-----------------------#
+            #  Print in the Screen  #
+            #-----------------------#
+            background.draw(screen)
+            pandora.draw(screen)
+            mage.draw(screen)
 
-        for coin in coins:
-            coin.draw(screen)
+            for coin in coins:
+                coin.draw(screen)
+            
+            pygame.display.update()
+
+            
+
+            #--------------------#
+            #  Check all Events  #
+            #--------------------#
+            events = pygame.event.get()
+
+            for event in events:
+                if event.type == pygame.QUIT:
+                    running = False
+                
+            pandora.event_processor(events)
+
+            #-------------------#
+            #     Border        #
+            #-------------------#
+            if pandora.x < 20 and scroll>left_border:
+                scroll += -speed
+                move_obj(moveble_objs,speed,0)
+            elif pandora.x > (1280//2) - 20 and scroll<right_border:
+                scroll += speed
+                move_obj(moveble_objs,-speed,0)
+
+            #-------------------#
+            #     Colisions     #
+            #-------------------#
+            coliders_events = colider.check_colision()  
+            clock = pygame.time.get_ticks() -time
+            wait = 10-clock
+            if wait>0:
+                pygame.time.delay(wait)# frame rate control
+
+            #print(wait)
+            #if len(coliders_events)>0:
+            #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
+        elif menu.choice == 'Exit':
+            break
         
-        pygame.display.update()
+        #------------------------#
+        #  Print Menu on Screen  #
+        #------------------------#
+        menu.draw(screen=screen)
 
-        
 
-        #--------------------#
-        #  Check all Events  #
-        #--------------------#
+        #---------------------#
+        #  Check Menu Events  #
+        #---------------------#
         events = pygame.event.get()
 
         for event in events:
             if event.type == pygame.QUIT:
                 running = False
-
             else:
-                menu.event_processor(event)
-            
-        pandora.event_processor(events)
-
-        #-------------------#
-        #     Border        #
-        #-------------------#
-        if pandora.x < 20 and scroll>left_border:
-            scroll += -speed
-            move_obj(moveble_objs,speed,0)
-        elif pandora.x > (1280//2) - 20 and scroll<right_border:
-            scroll += speed
-            move_obj(moveble_objs,-speed,0)
-
-        #-------------------#
-        #     Colisions     #
-        #-------------------#
-        coliders_events = colider.check_colision()  
-        clock = pygame.time.get_ticks() -time
-        wait = 10-clock
-        if wait>0:
-            pygame.time.delay(wait)# frame rate control
-
-        #print(wait)
-        #if len(coliders_events)>0:
-        #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
-
-                    
-
+                menu.event_processor(event=event)
