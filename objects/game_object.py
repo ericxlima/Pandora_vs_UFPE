@@ -46,3 +46,11 @@ class GameObject:
     @y.setter
     def y(self, value):
         self._position_y = value
+    
+    @w.setter
+    def w(self, value):
+        self._width = value
+    
+    @h.setter
+    def h(self, value):
+        self._height = value

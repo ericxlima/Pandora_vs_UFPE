@@ -1,3 +1,4 @@
+from scripts.constants import WHITE
 from objects.game_object import GameObject
 
 import pygame
@@ -5,10 +6,11 @@ import pygame
 
 class Button(GameObject):
 
-    def __init__(self, position_x=None, position_y=None, width=205, height=75, name=None, color=None) -> None:
+    def __init__(self, position_x=0, position_y=0, width=0, height=75, name=None, color=WHITE) -> None:
         super().__init__(position_x=position_x, position_y=position_y, width=width, height=height, name=name)
         
         self._color = color
+
 
     #  Create Getter and Setter for Color
     @property
@@ -30,20 +32,4 @@ class Button(GameObject):
         retangle.set_alpha(150)
         retangle.fill(self.color)
         screen.blit(retangle, position)
-
-
-
-
-
-
-
-
-"""
-def create_button(screen=None, size=None, position=None, image_path=None, color=None):
-    if image_path:
-        image = pygame.image.load(f'media/{image_path}.png')
-        screen.blit(image, position)
-    if size:
-        
-"""     
         

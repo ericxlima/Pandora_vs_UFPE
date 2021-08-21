@@ -1,4 +1,4 @@
-from scripts.constants import GREEN, RED, WHITE
+from scripts.constants import GREEN, RED
 import pygame
 
 from objects.map import Map
@@ -35,11 +35,14 @@ class Menu:
 
         button = Button()
 
-        #  Calculate Rules for Selected Button 
+        #  For all buttons selecteds
+        if self.selected_button:
+            button.w, button.h = 205, 75
+        
+        #  Calculate Rules for Selected Button
         if self.selected_button == 'Start':
             button.x, button.y = 376, 400
             button.color = GREEN
-            
         elif self.selected_button == 'Exit':
             button.x, button.y = 695, 400
             button.color = RED

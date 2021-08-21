@@ -1,5 +1,4 @@
 #  Import Dependences
-from objects.menu import Menu
 import pygame
 
 #  Import Objects
@@ -7,7 +6,7 @@ from objects.pandora import Pandora
 from objects.map import Map
 from objects.coin import Coin
 from objects.mage import Mage
-from objects.button import Button
+from objects.menu import Menu
 
 #  Import Utilities
 from scripts.constants import LENGHT_SCREEN_HD, RED, WHITE
@@ -57,6 +56,14 @@ if __name__ == '__main__':
     running = True
     while running:
         #--------------------#
+        #  For exit Menu     #
+        #--------------------#
+        if menu.choice == 'Start':
+            print('Startou mermo')
+        if menu.choice == 'Exit':
+            print('Sai')
+
+        #--------------------#
         #      Drop Coin     #
         #--------------------#
 
@@ -85,9 +92,9 @@ if __name__ == '__main__':
         #-----------------------#
         #  Print in the Screen  #
         #-----------------------#
-        background.draw(screen)
-        pandora.draw(screen)
-        mage.draw(screen)
+        #background.draw(screen)
+        #pandora.draw(screen)
+        #mage.draw(screen)
         menu.draw(screen)
 
         for coin in coins:
@@ -105,6 +112,9 @@ if __name__ == '__main__':
         for event in events:
             if event.type == pygame.QUIT:
                 running = False
+
+            else:
+                menu.event_processor(event)
             
         pandora.event_processor(events)
 
@@ -127,7 +137,7 @@ if __name__ == '__main__':
         if wait>0:
             pygame.time.delay(wait)# frame rate control
 
-        print(wait)
+        #print(wait)
         #if len(coliders_events)>0:
         #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
 
