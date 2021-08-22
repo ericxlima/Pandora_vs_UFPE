@@ -138,12 +138,10 @@ if __name__ == '__main__':
 
             if len(coliders_events) > 0:
                 for event in coliders_events:
-                    for coin in coins:
-                        print(len(coliders_events))
-                        if coin == event.go2:
+                    for coin in coins:                   
+                        if pandora ==event.go1 and coin == event.go2:
                             collected_coins.append(coin)
                             coins.remove(coin)
-                            print(coins)
 
             # Text update
 

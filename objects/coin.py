@@ -41,7 +41,7 @@ class Coin(GameObject):
     def calculate_rules(self):
         self.y += self.vel_y
 
-        if self.y == 530:
+        if self.y == 520:
             self.vel_y = 0
         
 
