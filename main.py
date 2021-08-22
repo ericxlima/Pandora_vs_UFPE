@@ -9,7 +9,7 @@ from objects.mage import Mage
 from objects.menu import Menu
 
 #  Import Utilities
-from scripts.constants import LENGHT_SCREEN_HD, RED, WHITE
+from scripts.constants import BLACK, LENGHT_SCREEN_HD, RED, WHITE
 from scripts.colision_mod import Colision_mod
 
 
@@ -49,6 +49,7 @@ if __name__ == '__main__':
     # Objects to the colider detector
     list_objs = [pandora]  
     colider = Colision_mod(list_objs) 
+    collected_coins = []
 
     coins = []
 
@@ -68,6 +69,10 @@ if __name__ == '__main__':
                 coin = Coin(position_x=mage.x,
                             position_y=mage.y)
                 coins.append(coin)
+                if coin not in list_objs:
+                    list_objs.append(coin)
+                if coin not in moveble_objs:
+                    moveble_objs.append(coin)
 
             #--------------------#
             # frame rate control #
@@ -89,16 +94,13 @@ if __name__ == '__main__':
             #-----------------------#
             #  Print in the Screen  #
             #-----------------------#
+            
             background.draw(screen)
             pandora.draw(screen)
             mage.draw(screen)
 
             for coin in coins:
                 coin.draw(screen)
-            
-            pygame.display.update()
-
-            
 
             #--------------------#
             #  Check all Events  #
@@ -129,6 +131,28 @@ if __name__ == '__main__':
             wait = 10-clock
             if wait>0:
                 pygame.time.delay(wait)# frame rate control
+            
+            #-------------------#
+            #  Score and Coins  #
+            #-------------------#
+
+            if len(coliders_events) > 0:
+                for event in coliders_events:
+                    for coin in coins:
+                        print(len(coliders_events))
+                        if coin == event.go2:
+                            collected_coins.append(coin)
+                            coins.remove(coin)
+                            print(coins)
+
+            # Text update
+
+            font = pygame.font.Font(None, 40)
+            score_text = font.render('Moedas coletadas: ' + str(len(collected_coins)), 0, BLACK)
+            screen.blit(score_text, (50, 50))
+                
+            pygame.display.update()
+                    
 
             #print(wait)
             #if len(coliders_events)>0:
