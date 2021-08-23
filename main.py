@@ -1,5 +1,6 @@
 #  Import Dependences
 import pygame
+import os
 
 #  Import Objects
 from objects.pandora import Pandora
@@ -18,6 +19,10 @@ pygame.init()
 pygame.display.set_caption('Pandora vs UFPE')
 icon = pygame.image.load('media/venus_space.png')
 pygame.display.set_icon(icon)
+
+#  play game music
+music = pygame.mixer.music.load(os.path.join("media/music", "music.ogg"))
+pygame.mixer.music.play(-1)
 
 #  Set the Screen Size 
 screen = pygame.display.set_mode(size=LENGHT_SCREEN_HD)

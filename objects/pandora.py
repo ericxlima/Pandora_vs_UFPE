@@ -1,7 +1,12 @@
 #from _typeshed import Self
 import pygame
 
+pygame.mixer.init()
+
 from objects.game_object import GameObject
+
+jumpSound = pygame.mixer.Sound("media/music/jumpsound.ogg")
+#pygame.mixer.jumpSound.play(-1)
 
 
 class Pandora(GameObject):
@@ -78,6 +83,7 @@ class Pandora(GameObject):
                 if event.key == pygame.K_LEFT:
                     self.vel_x = -5
                 if event.key == pygame.K_UP:
+                    jumpSound.play()
                     if self._jump == 0:
                         self.jumppattern(20) #jump frame precision
                         self._jump = 14 # jump height
