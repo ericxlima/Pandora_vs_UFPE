@@ -10,6 +10,24 @@ jumpSound = pygame.mixer.Sound("media/music/jumpsound.ogg")
 
 
 class Pandora(GameObject):
+
+    pandora_right = [pygame.image.load('media/pandora/pandora-right1.png'),
+                    pygame.image.load('media/pandora/pandora-right2.png'),
+                    pygame.image.load('media/pandora/pandora-right3.png'),
+                    pygame.image.load('media/pandora/pandora-right4.png')]
+
+    pandora_left = [pygame.image.load('media/pandora/pandora-left1.png'),
+                    pygame.image.load('media/pandora/pandora-left2.png'),
+                    pygame.image.load('media/pandora/pandora-left3.png'),
+                    pygame.image.load('media/pandora/pandora-left4.png')]
+
+    pandora_right_jump = [pygame.image.load('media/pandora/pandora-right-jump2.png'),
+                         pygame.image.load('media/pandora/pandora-right-jump3.png'),
+                         pygame.image.load('media/pandora/pandora-right-jump4.png')]
+    
+    pandora_left_jump = [pygame.image.load('media/pandora/pandora-left-jump2.png'),
+                         pygame.image.load('media/pandora/pandora-left-jump3.png'),
+                         pygame.image.load('media/pandora/pandora-left-jump4.png')]
  
     def __init__(self, position_x=350, position_y=525, width=40, height=60) -> None:
         """Returns Pandora Object
@@ -29,6 +47,13 @@ class Pandora(GameObject):
         self._velocity_y = 0
         self._jump = 0
         self._jump_pattern = []
+
+        # News moviments
+        
+        self._right = False
+        self._left = False
+        self._step_index = 0
+
     #  Getters and Setters to moviment velocities in axis x and y
     @property
     def vel_x(self):
@@ -38,6 +63,18 @@ class Pandora(GameObject):
     def vel_y(self):
         return self._velocity_y
 
+    @property
+    def move_right(self):
+        return self._right
+
+    @property
+    def move_left(self):
+        return self._left
+    
+    @property
+    def step(self):
+        return self._step_index
+
     @vel_x.setter
     def vel_x(self, value):
         self._velocity_x = value
@@ -45,11 +82,36 @@ class Pandora(GameObject):
     @vel_y.setter
     def vel_y(self, value):
         self._velocity_y = value
+    
+    @move_right.setter
+    def move_right(self, value):
+        self._right = value
+    
+    @move_left.setter
+    def move_left(self, value):
+        self._right = value
+
+    @step.setter
+    def step(self, value):
+        self._step_index = value
 
 
     def draw(self, screen):
         """ Print in Screen the Pandora"""
-        image =  pygame.image.load('media/pandora/pandora-right1.png')
+        #Pandora stoped
+
+        image = pygame.image.load('media/pandora/pandora-right1.png')
+
+        if self.vel_x == 0 and self.move_right:
+            image = pygame.image.load('media/pandora/pandora-right1.png')
+        elif self.vel_x == 0 and self.move_left:
+            image = pygame.image.load('media/pandora/pandora-left1.png')
+        else:
+            if self.move_right:
+                image = pygame.image.load(f'media/pandora/pandora-right2.png')
+            if self.move_left:
+                image = pygame.image.load(f'media/pandora/pandora-left2.png')
+
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
 
@@ -63,6 +125,10 @@ class Pandora(GameObject):
         elif self.x >= 1245:
             self.x -= 1
         else:
+            if self.step == 4:
+                self.step = 0
+            else:
+                self.step += 1
             self.x += self.vel_x
         
         #  Floor limit of Map
@@ -81,6 +147,8 @@ class Pandora(GameObject):
             #  While the user presses the key
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LEFT:
+                    self.move_left = True
+                    self.move_right= False
                     self.vel_x = -5
                 if event.key == pygame.K_UP:
                     jumpSound.play()
@@ -88,16 +156,22 @@ class Pandora(GameObject):
                         self.jumppattern(20) #jump frame precision
                         self._jump = 14 # jump height
                 if event.key == pygame.K_RIGHT:
+                    self.move_left = False
+                    self.move_right= True
                     self.vel_x = 5
                     
             
             # If the user drop a key
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
+                    self.move_left = False
+                    self.step = 0
                     self.vel_x = 0
                 #if event.key == pygame.K_UP:
                    # self.vel_y = 0
                 if event.key == pygame.K_RIGHT:
+                    self.move_right = False
+                    self.step = 0
                     self.vel_x = 0
 
     def jumppattern(self,c):
