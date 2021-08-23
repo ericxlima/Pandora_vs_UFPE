@@ -150,7 +150,7 @@ if __name__ == '__main__':
 
             # Text update
 
-            font = pygame.font.Font(None, 40)
+            font = pygame.font.Font(None, 30)
             score_text = font.render('Moedas coletadas: ' + str(len(collected_coins)), 0, BLACK)
             screen.blit(score_text, (50, 50))
                 

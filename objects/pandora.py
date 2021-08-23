@@ -1,4 +1,3 @@
-#from _typeshed import Self
 import pygame
 
 pygame.mixer.init()
@@ -89,7 +88,7 @@ class Pandora(GameObject):
     
     @move_left.setter
     def move_left(self, value):
-        self._right = value
+        self._left = value
 
     @step.setter
     def step(self, value):
@@ -100,18 +99,15 @@ class Pandora(GameObject):
         """ Print in Screen the Pandora"""
         #Pandora stoped
 
-        image = pygame.image.load('media/pandora/pandora-right1.png')
-
+        image = image = pygame.image.load('media/pandora/pandora-right1.png')
         if self.vel_x == 0 and self.move_right:
             image = pygame.image.load('media/pandora/pandora-right1.png')
         elif self.vel_x == 0 and self.move_left:
             image = pygame.image.load('media/pandora/pandora-left1.png')
         else:
             if self.move_right:
-                print(self.step)
                 image = self.pandora_right[self.step]
             if self.move_left:
-                print(self.step)
                 image = self.pandora_left[self.step]
 
         coordinates = self.x, self.y
@@ -151,7 +147,7 @@ class Pandora(GameObject):
                 if event.key == pygame.K_LEFT:
                     self.move_left = True
                     self.move_right= False
-                    self.vel_x = -5
+                    self.vel_x = -8
                 if event.key == pygame.K_UP:
                     jumpSound.play()
                     if self._jump == 0:
@@ -160,20 +156,16 @@ class Pandora(GameObject):
                 if event.key == pygame.K_RIGHT:
                     self.move_left = False
                     self.move_right= True
-                    self.vel_x = 5
+                    self.vel_x = 8
                     
             
             # If the user drop a key
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
-                    self.move_left = False
-                    self.step = 0
                     self.vel_x = 0
                 #if event.key == pygame.K_UP:
                    # self.vel_y = 0
                 if event.key == pygame.K_RIGHT:
-                    self.move_right = False
-                    self.step = 0
                     self.vel_x = 0
 
     def jumppattern(self,c):
