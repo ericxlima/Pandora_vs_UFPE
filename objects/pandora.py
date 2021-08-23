@@ -108,9 +108,11 @@ class Pandora(GameObject):
             image = pygame.image.load('media/pandora/pandora-left1.png')
         else:
             if self.move_right:
-                image = pygame.image.load(f'media/pandora/pandora-right2.png')
+                print(self.step)
+                image = self.pandora_right[self.step]
             if self.move_left:
-                image = pygame.image.load(f'media/pandora/pandora-left2.png')
+                print(self.step)
+                image = self.pandora_left[self.step]
 
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
@@ -125,7 +127,7 @@ class Pandora(GameObject):
         elif self.x >= 1245:
             self.x -= 1
         else:
-            if self.step == 4:
+            if self.step == 3:
                 self.step = 0
             else:
                 self.step += 1
