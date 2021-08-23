@@ -50,10 +50,10 @@ class Menu:
         
         #  Calculate Rules for Selected Button
         if self.selected_button == 'Start':
-            button.x, button.y = 376, 400
+            button.x, button.y = 385, 400
             button.color = GREEN
         elif self.selected_button == 'Exit':
-            button.x, button.y = 695, 400
+            button.x, button.y = 705, 400
             button.color = RED
         
         button.draw_retangle(screen)
