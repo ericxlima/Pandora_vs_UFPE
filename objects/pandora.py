@@ -152,7 +152,7 @@ class Pandora(GameObject):
                     jumpSound.play()
                     if self._jump == 0:
                         self.jumppattern(20) #jump frame precision
-                        self._jump = 14 # jump height
+                        self._jump = 16 # jump height
                 if event.key == pygame.K_RIGHT:
                     self.move_left = False
                     self.move_right= True

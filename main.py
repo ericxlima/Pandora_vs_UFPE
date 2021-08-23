@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # Objects to the colider detector
     list_objs = [pandora]  
     colider = Colision_mod(list_objs) 
-    collected_coins = []
+    collected_coins = 0
 
     coins = []
 
@@ -70,9 +70,20 @@ if __name__ == '__main__':
              #      Drop Coin     #
              #--------------------#
 
-            if mage.drop_coin:
+            if mage.drop_coin_gold:
                 coin = Coin(position_x=mage.x,
-                            position_y=mage.y)
+                            position_y=mage.y,
+                            name='coin')
+                coins.append(coin)
+                if coin not in list_objs:
+                    list_objs.append(coin)
+                if coin not in moveble_objs:
+                    moveble_objs.append(coin)
+
+            if mage.drop_coin_red:
+                coin = Coin(position_x=mage.x,
+                            position_y=mage.y,
+                            name='coin_red')
                 coins.append(coin)
                 if coin not in list_objs:
                     list_objs.append(coin)
@@ -143,15 +154,20 @@ if __name__ == '__main__':
 
             if len(coliders_events) > 0:
                 for event in coliders_events:
-                    for coin in coins:                   
-                        if pandora ==event.go1 and coin == event.go2:
-                            collected_coins.append(coin)
-                            coins.remove(coin)
+                    for coin in coins:
+                        if coin.name == 'coin':                   
+                            if pandora ==event.go1 and coin == event.go2:
+                                collected_coins += 1
+                                coins.remove(coin)
+                        if coin.name == 'coin_red':
+                            if pandora ==event.go1 and coin == event.go2:
+                                collected_coins -= 1    
+                                coins.remove(coin)
 
             # Text update
 
             font = pygame.font.Font(None, 30)
-            score_text = font.render('Moedas coletadas: ' + str(len(collected_coins)), 0, BLACK)
+            score_text = font.render('Moedas coletadas: ' + str(collected_coins), 0, BLACK)
             screen.blit(score_text, (50, 50))
                 
             pygame.display.update()

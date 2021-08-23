@@ -9,7 +9,8 @@ class Mage(GameObject):
 
         self._velocity_x = 5
         self._walking = 0
-        self._drop_coin = False
+        self._drop_coin_gold = False
+        self._drop_coin_red = False
         self._coins_dropped = 0
 
     @property
@@ -21,8 +22,12 @@ class Mage(GameObject):
         return self._walking
     
     @property
-    def drop_coin(self):
-        return self._drop_coin
+    def drop_coin_gold(self):
+        return self._drop_coin_gold
+
+    @property
+    def drop_coin_red(self):
+        return self._drop_coin_red
     
     @property
     def coins_dropped(self):
@@ -36,9 +41,13 @@ class Mage(GameObject):
     def walking(self, value):
         self._walking = value
     
-    @drop_coin.setter
-    def drop_coin(self, value):
-        self._drop_coin = value
+    @drop_coin_gold.setter
+    def drop_coin_gold(self, value):
+        self._drop_coin_gold = value
+    
+    @drop_coin_red.setter
+    def drop_coin_red(self, value):
+        self._drop_coin_red = value
     
     @coins_dropped.setter
     def coins_dropped(self, value):
@@ -54,7 +63,8 @@ class Mage(GameObject):
     def calculate_rules(self):
         self.x += self.vel_x
         self.walking += abs(self.vel_x)
-        self.drop_coin = False
+        self.drop_coin_gold = False
+        self.drop_coin_red = False
 
         if self.x >= 1100:
             self.vel_x = -self.vel_x
@@ -64,8 +74,12 @@ class Mage(GameObject):
     
         # Limit the amount of coins
         if self.coins_dropped < 10:
-            if self.walking == 205:
+            if self.walking == 410:
                 self.walking = 0
-                self.drop_coin = True
+                self.drop_coin_gold = True
                 self.coins_dropped += 1
+            if self.walking == 205:
+                self.drop_coin_red = True
+            
+                
 

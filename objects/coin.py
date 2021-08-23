@@ -5,7 +5,7 @@ from objects.game_object import GameObject
 
 class Coin(GameObject):
  
-    def __init__(self, position_x= 600, position_y=520, width=40, height=40) -> None:
+    def __init__(self, position_x= 600, position_y=520, width=40, height=40, name='') -> None:
         """Returns a Coin Object
 
         Args:
@@ -16,7 +16,7 @@ class Coin(GameObject):
         """
 
         #  Basic Properties
-        super().__init__(position_x, position_y, width, height)
+        super().__init__(position_x, position_y, width, height, name)
 
         #  Moviment Properties
         self._velocity_y = 5
@@ -34,7 +34,7 @@ class Coin(GameObject):
 
     def draw(self, screen):
         """ Print in Screen the Coin Object"""
-        image =  pygame.image.load('media/level_1/coin.png')
+        image =  pygame.image.load(f'media/level_1/{self.name}.png')
         coordinates = self.x, self.y
         screen.blit(image, coordinates)
     
