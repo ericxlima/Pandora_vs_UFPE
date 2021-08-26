@@ -1,7 +1,15 @@
 #  Pandora vs UFPE
 #
 ##  A game about Pandora's Life at UFPE in 2020.2 👩🏻‍🦱
+#
+###  Demonstration 🎮
+#
+<img src="media/demo_pandora.gif" width="600px;" alt="Pandora's Life at UFPE"/>
 
+#
+### Links :link:
+#
+- [Report](report.md)
 #
 ### Play 🎮
 - In your shell:
