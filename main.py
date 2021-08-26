@@ -66,6 +66,7 @@ if __name__ == '__main__':
         #Calculate Menu Rules#
         #--------------------#
         if screen_choice.choice == 'Start':
+
             #  Running Game
 
             #-------------#
@@ -74,8 +75,21 @@ if __name__ == '__main__':
             if mage.coins_dropped == 10:
                 if collected_red_coins >= 4:
                     screen_choice.name = "Lose"
+                    
+                    #  Reset
+                    collected_golden_coins = 0
+                    collected_red_coins = 0
+                    mage = Mage()
+                    coins = []
+                    
                 elif collected_golden_coins >= 7:
                     screen_choice.name = "Win"
+
+                    #  Reset
+                    collected_golden_coins = 0
+                    collected_red_coins = 0
+                    mage = Mage()
+                    coins = []
 
              #--------------------#
              #      Drop Coin     #

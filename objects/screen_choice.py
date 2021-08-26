@@ -36,8 +36,8 @@ class ScreenChoice:
 
     @name.setter
     def name(self, value):
-        self._name = value
         self._choice = None
+        self._name = value
 
     #  Print in Screen
     def draw(self, screen):
