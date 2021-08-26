@@ -7,7 +7,7 @@ from objects.pandora import Pandora
 from objects.map import Map
 from objects.coin import Coin
 from objects.mage import Mage
-from objects.menu import Menu
+from objects.screen_choice import ScreenChoice
 
 #  Import Utilities
 from scripts.constants import BLACK, LENGHT_SCREEN_HD, RED, WHITE
@@ -41,7 +41,7 @@ if __name__ == '__main__':
     pandora = Pandora()
     background = Map()
     mage = Mage()
-    menu = Menu()
+    screen_choice = ScreenChoice(name="Menu")
 
     #======================== border controls=============
     scroll = 0 #border left wall: 0 for left border and  1200 for right border
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     # Objects to the colider detector
     list_objs = [pandora]  
     colider = Colision_mod(list_objs) 
-    collected_coins = 0
+    collected_golden_coins = 0
     collected_red_coins = 0
 
     coins = []
@@ -65,7 +65,7 @@ if __name__ == '__main__':
         #--------------------#
         #Calculate Menu Rules#
         #--------------------#
-        if menu.choice == 'Start':
+        if screen_choice.choice == 'Start':
             #  Running Game
              #--------------------#
              #      Drop Coin     #
@@ -133,10 +133,10 @@ if __name__ == '__main__':
             #-------------------#
             #     Border        #
             #-------------------#
-            if pandora.x < 20 and scroll>left_border:
+            if pandora.x < (1280//2) - 40 and scroll>left_border:
                 scroll += -speed
                 move_obj(moveble_objs,speed,0)
-            elif pandora.x > (1280//2) - 20 and scroll<right_border:
+            elif pandora.x > (1280//2) - 21 and scroll<right_border:
                 scroll += speed
                 move_obj(moveble_objs,-speed,0)
 
@@ -158,19 +158,28 @@ if __name__ == '__main__':
                     for coin in coins:
                         if coin.name == 'coin':                   
                             if pandora ==event.go1 and coin == event.go2:
-                                collected_coins += 1
+                                collected_golden_coins += 1
                                 coins.remove(coin)
                         if coin.name == 'coin_red':
                             if pandora ==event.go1 and coin == event.go2:
                                 collected_red_coins += 1    
                                 coins.remove(coin)
-            
-            # Game Over
 
-            # Text update
+            #-------------#
+            #  Game Over  #
+            #-------------#
+            if mage.coins_dropped == 10:
+                if collected_red_coins >= 4:
+                    screen_choice.name = "Lose"
+                elif collected_golden_coins >= 7:
+                    screen_choice.name = "Win"
 
+
+            #-------------#
+            # Text update #
+            #-------------#
             font = pygame.font.Font(None, 30)
-            score_golden_text = font.render('Moedas Douradas: ' + str(collected_coins), 0, BLACK)
+            score_golden_text = font.render('Moedas Douradas: ' + str(collected_golden_coins), 0, BLACK)
             score_red_text = font.render('Moedas Vermelhas: ' + str(collected_red_coins), 0, BLACK)
             screen.blit(score_golden_text, (50, 50))
             screen.blit(score_red_text, (50, 80))
@@ -181,13 +190,13 @@ if __name__ == '__main__':
             #print(wait)
             #if len(coliders_events)>0:
             #print("fps: " + str(int(6000/(pygame.time.get_ticks() - x))))
-        elif menu.choice == 'Exit':
+        elif screen_choice.choice == 'Exit':
             break
         else:
             #------------------------#
             #  Print Menu on Screen  #
             #------------------------#
-            menu.draw(screen=screen)
+            screen_choice.draw(screen=screen)
             pygame.display.update()
 
 
@@ -200,4 +209,4 @@ if __name__ == '__main__':
                 if event.type == pygame.QUIT:
                     running = False
                 else:
-                    menu.event_processor(event=event)
+                    screen_choice.event_processor(event=event)

@@ -73,7 +73,7 @@ class Mage(GameObject):
         
     
         # Limit the amount of coins
-        if self.coins_dropped < 20:
+        if self.coins_dropped < 10:
             if self.walking == 410:
                 self.walking = 0
                 self.drop_coin_gold = True
