@@ -55,6 +55,7 @@ if __name__ == '__main__':
     list_objs = [pandora]  
     colider = Colision_mod(list_objs) 
     collected_coins = 0
+    collected_red_coins = 0
 
     coins = []
 
@@ -161,14 +162,16 @@ if __name__ == '__main__':
                                 coins.remove(coin)
                         if coin.name == 'coin_red':
                             if pandora ==event.go1 and coin == event.go2:
-                                collected_coins -= 1    
+                                collected_red_coins += 1    
                                 coins.remove(coin)
 
             # Text update
 
             font = pygame.font.Font(None, 30)
-            score_text = font.render('Moedas coletadas: ' + str(collected_coins), 0, BLACK)
-            screen.blit(score_text, (50, 50))
+            score_golden_text = font.render('Moedas Douradas: ' + str(collected_coins), 0, BLACK)
+            score_red_text = font.render('Moedas Vermelhas: ' + str(collected_red_coins), 0, BLACK)
+            screen.blit(score_golden_text, (50, 50))
+            screen.blit(score_red_text, (50, 80))
                 
             pygame.display.update()
                     
