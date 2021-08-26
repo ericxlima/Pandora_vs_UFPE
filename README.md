@@ -1,7 +1,6 @@
 #  Pandora vs UFPE
 ##  A game about Pandora's Life at UFPE in 2020.2 👩🏻‍🦱
 #
-#
 ###  Demonstration 🎮
 <img src="media/demo_pandora.gif" width="600px;" alt="Pandora's Life at UFPE"/>
 
@@ -28,7 +27,7 @@ pip3 install -r requirements.txt
 python3 main.py
 ```
 #
-### Keys
+### Keys :keyboard:
 | Key | Description |
 | :--- | :--- |
 | Enter | Select option |
