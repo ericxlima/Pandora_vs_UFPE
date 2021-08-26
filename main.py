@@ -164,6 +164,8 @@ if __name__ == '__main__':
                             if pandora ==event.go1 and coin == event.go2:
                                 collected_red_coins += 1    
                                 coins.remove(coin)
+            
+            # Game Over
 
             # Text update
 
