@@ -67,6 +67,16 @@ if __name__ == '__main__':
         #--------------------#
         if screen_choice.choice == 'Start':
             #  Running Game
+
+            #-------------#
+            #  Game Over  #
+            #-------------#
+            if mage.coins_dropped == 10:
+                if collected_red_coins >= 4:
+                    screen_choice.name = "Lose"
+                elif collected_golden_coins >= 7:
+                    screen_choice.name = "Win"
+
              #--------------------#
              #      Drop Coin     #
              #--------------------#
@@ -165,14 +175,7 @@ if __name__ == '__main__':
                                 collected_red_coins += 1    
                                 coins.remove(coin)
 
-            #-------------#
-            #  Game Over  #
-            #-------------#
-            if mage.coins_dropped == 10:
-                if collected_red_coins >= 4:
-                    screen_choice.name = "Lose"
-                elif collected_golden_coins >= 7:
-                    screen_choice.name = "Win"
+
 
 
             #-------------#

@@ -46,33 +46,21 @@ class ScreenChoice:
             background = Map(name='menu/background-menu')
             background.draw(screen)
 
-            # Load Images
-            start_image = Button(position_x=376, position_y=400, image_path='menu/start_button')
-            start_image.draw_image(screen=screen)
-            exit_image = Button(position_x=695, position_y=400, image_path='menu/exit_button')
-            exit_image.draw_image(screen=screen)
-
         # Load Game Over Win Interface
-        elif self.name == "Game Over":
-            background = Map(name='PATH')
+        elif self.name == "Win":
+            background = Map(name='menu/GAME-OVER-SCREEN-1')
             background.draw(screen)
-
-            # Load Images
-            play_again_image = Button(position_x=376, position_y=400, image_path='PATH')
-            play_again_image.draw_image(screen=screen)
-            exit_image = Button(position_x=695, position_y=400, image_path='PATH')
-            exit_image.draw_image(screen=screen)
         
         # Load Game Over Lose Interface
-        elif self.name == "Game Over":
-            background = Map(name='PATH')
+        elif self.name == "Lose":
+            background = Map(name='menu/GAME-OVER-SCREEN-1')
             background.draw(screen)
 
-            # Load Images
-            play_again_image = Button(position_x=376, position_y=400, image_path='PATH')
-            play_again_image.draw_image(screen=screen)
-            exit_image = Button(position_x=695, position_y=400, image_path='PATH')
-            exit_image.draw_image(screen=screen)
+        # Load Button Images
+        play_again_image = Button(position_x=376, position_y=400, image_path='menu/start_button')
+        play_again_image.draw_image(screen=screen)
+        exit_image = Button(position_x=695, position_y=400, image_path='menu/exit_button')
+        exit_image.draw_image(screen=screen)
 
         
         # Load Button Menu
