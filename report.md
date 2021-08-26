@@ -43,7 +43,7 @@ O grupo utilizou o VSCode como editor de textos, bem como Git e GitHub para trab
 **Integração/compartilhamento:**
 
 - Notion/documentação: Carol
-- Planejamento e ideias: Todos <3
+- Planejamento e ideias: Todos :heart:
 - Líder: Eric
 - Ensino de ferramentas: Eric e Davi
 
